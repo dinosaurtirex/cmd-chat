@@ -1,4 +1,4 @@
-here is simple online chat what can be runned in cmd
+here is secured online chat what can be runned in cmd 
 
 ![preview](preview.png)
 
@@ -16,11 +16,8 @@ how to run clear client
 * pip install -r reqs.txt 
 * python client.py
 
-to do
 
-* rsa
-
-potential crypting pipeline
+crypting pipeline
 
 * Client making priv key
 * Server making symmetric key 
@@ -29,3 +26,7 @@ potential crypting pipeline
 * Client encrypting private key 
 * And than communicate with server via
 * symmetric key
+
+to do
+
+* interface for choosing server in client 

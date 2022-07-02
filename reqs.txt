@@ -1,3 +1,4 @@
 sanic
 requests
 rsa
+cryptography

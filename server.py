@@ -2,21 +2,17 @@ from email.policy import HTTP
 from typing import Any, Coroutine
 from sanic import Sanic, Request, response 
 from sanic.response import HTTPResponse
+from cryptography.fernet import Fernet
 from sanic.server.websockets.impl import WebsocketImplProtocol
+
 import rsa
 
 app = Sanic("app")
 app.config.OAS = False
 
 actual_messages = []
-
-(pubkey, privkey) = rsa.newkeys(512)
-
-with open("private.pem", "wb") as f:
-    f.write(privkey.save_pkcs1())
-    
-with open("public.pem", "wb") as f:
-    f.write(pubkey.save_pkcs1())
+users = {}
+key = Fernet.generate_key()
 
 
 @app.route('/talk', methods=["GET", "POST"])
@@ -27,9 +23,16 @@ async def talking(request: Request) -> HTTPResponse:
 
 @app.route('/update', methods=["GET", "POST"])
 async def talking(request: Request) -> HTTPResponse:
-    return response.json({"status": [rsa.encrypt(k.encode('utf8'), pubkey) for k in actual_messages]})
+    return response.json({"status": actual_messages, "users_in_chat": list(users.keys())})
 
 
 @app.route('/get_key', methods=['GET', 'POST'])
 async def get_key(request: Request) -> HTTPResponse:
-    return await response.file("public.pem", status=200)
+    
+    pubkey = rsa.PublicKey.load_pkcs1(request.form['pubkey'][0])
+    data = rsa.encrypt(key, pubkey)
+    
+    if request.ip not in users:
+        users[request.form['username'][0]] = key
+    
+    return response.raw(data)

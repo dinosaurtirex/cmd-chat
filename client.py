@@ -1,10 +1,23 @@
+from cryptography.fernet import Fernet
 import threading 
 import requests 
 import time
 import rsa 
 import os 
 
+
 class Client:
+    
+    def _key_gen(self) -> None:
+
+        (pubkey, privkey) = rsa.newkeys(512)
+
+        with open("private.pem", "wb") as f:
+            f.write(privkey.save_pkcs1())
+            
+        with open("public.pem", "wb") as f:
+            f.write(pubkey.save_pkcs1())
+    
     
     def __init__(self, username: str):
         self.server = "95.165.158.131"
@@ -18,6 +31,9 @@ class Client:
         self.key_url = f"{self.base_url}/get_key"
 
         self.pubkey = None 
+        self.privkey = None
+        self.symetric_key = None 
+        self.fernet = None
         
         
     def send_info(self):
@@ -26,7 +42,8 @@ class Client:
             user_input = input("You're message: ")
             message = f'{self.username}: {user_input}'
             requests.post(self.talk_url, data={
-                "text": rsa.encrypt(message.encode('utf8'), self.pubkey)
+                "text": self.fernet.encrypt(message.encode()),
+                "username": self.username
             })
             
             
@@ -39,27 +56,42 @@ class Client:
                 continue 
             last_try = r.json()
             os.system("cls")
-            for msg in last_try["status"]:
-                print(f"{rsa.decrypt(msg.encode(), self.seckey)}\n")
+            if len(last_try['status']) > 0:
+                i = 0
+                for msg in last_try["status"]:
+                    actual_message = self.fernet.decrypt(msg.encode()).decode("utf-8")
+                    if i == 0:
+                        users = last_try["users_in_chat"]
+                        print(f"Users in chat: {users}\n\n")
+                        print(f"{actual_message}\n")
+                    else:
+                        print(f"{actual_message}\n")
+                    i += 1
                 
                 
     def _key_request(self) -> None:
+        with open('private.pem', 'rb') as f:
+            self.privkey = rsa.PrivateKey.load_pkcs1(f.read())
         
-        with requests.get(self.key_url) as r:
-            with open("public_rec.pem", 'wb') as f:
-                f.write(r.text.encode())
+        with open("public.pem", 'rb') as f:
+            with requests.get(self.key_url, data={"pubkey": f.read(), "username": self.username}, stream=True) as r:
+                message = r.raw.read(999)
+                self.symetric_key = rsa.decrypt(message, self.privkey)
+                self.fernet = Fernet(self.symetric_key)
+
                 
                 
     def _remove_keys(self) -> None:
-        with open('public_rec.pem', 'wb') as f:
-            pass 
+        os.remove("private.pem")
+        os.remove("public.pem")
                 
                 
     def _validate_keys(self) -> None:
         
+        self._key_gen()
         self._key_request()
         
-        with open('public_rec.pem', "rb") as f:
+        with open('public.pem', "rb") as f:
             first_key = f.read()
             
         self.pubkey = rsa.PublicKey.load_pkcs1(first_key)
@@ -80,5 +112,5 @@ class Client:
         
         
 if __name__ == '__main__':
-    c = Client("sneaky") # input("Who are you? \t")
+    c = Client(input("Who are you? \t"))
     c()
