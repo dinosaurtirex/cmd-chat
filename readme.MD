@@ -11,3 +11,7 @@ how to run clear client
 * venv/scripts/Activate
 * pip install -r reqs.txt 
 * python client.py
+
+to do
+
+* rsa
