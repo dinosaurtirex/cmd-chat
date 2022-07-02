@@ -1,4 +1,5 @@
 /__pycache__/
 /i-try/
 /venv/
-
+test_rsa.py
+.gitignore

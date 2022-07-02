@@ -19,3 +19,13 @@ how to run clear client
 to do
 
 * rsa
+
+potential crypting pipeline
+
+* Client making priv key
+* Server making symmetric key 
+* Client sending public key to server
+* Server crypting symmetric key and sending to client 
+* Client encrypting private key 
+* And than communicate with server via
+* symmetric key
