@@ -1,6 +1,6 @@
 here is simple online chat what can be runned in cmd
 
-[preview](preview.png)
+![preview](preview.png)
 
 how to run server on windows 10 / 11 in powershell
 
