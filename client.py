@@ -20,8 +20,8 @@ class Client:
     
     
     def __init__(self, username: str):
-        self.server = "95.165.158.131"
-        self.port = 80
+        self.server = input("server ip: \n") 
+        self.port = input("server port: \n") 
         self.username = username 
         
         self.base_url = f"http://{self.server}:{self.port}"
