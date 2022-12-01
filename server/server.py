@@ -8,11 +8,11 @@ app = Sanic("app")
 app.config.OAS = False
 
 # Message structure is:
-# username: message 
+# [username: message, ...]
 actual_messages: list[str] = []
 # Users structure is
-# Ip, Username: Public key 
-users = {}
+# {Ip, Username: Public key} 
+users: dict[str, str] = {}
 key = Fernet.generate_key()
 
 
