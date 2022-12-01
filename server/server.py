@@ -35,6 +35,6 @@ async def get_key(request: Request) -> HTTPResponse:
     data = rsa.encrypt(key, pubkey)
     
     if request.ip not in users:
-        users[request.form['username'][0]] = key
+        users[f"{request.ip}|{request.form.get("username")}] = key
     
     return response.raw(data)
