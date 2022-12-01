@@ -80,9 +80,3 @@ python client.py
 * Server crypting symmetric key and sending to client 
 * Client encrypting private key 
 * And than communicate with server via symmetric key
-
-## To do
-
-* interface for choosing server in client 
-* double password user verification
-* white list
