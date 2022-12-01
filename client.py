@@ -55,7 +55,7 @@ class Client:
             if last_try == r.json():
                 continue 
             last_try = r.json()
-            os.system("cls")
+            os.system("clear")
             if len(last_try['status']) > 0:
                 i = 0
                 for msg in last_try["status"]:
