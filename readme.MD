@@ -6,6 +6,8 @@ here is secured online chat what can be runned in cmd
 
 ## Linux 
 
+For linux its required to have python3.10 
+
 ```
 chmod +x run_server.sh
 ```
