@@ -9,7 +9,9 @@ app.config.OAS = False
 
 # Message structure is:
 # username: message 
-actual_messages = []
+actual_messages: list[str] = []
+# Users structure is
+# Ip, Username: Key 
 users = {}
 key = Fernet.generate_key()
 
