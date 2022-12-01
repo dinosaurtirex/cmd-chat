@@ -3,3 +3,4 @@ requests
 rsa
 cryptography
 colorama
+pydantic
