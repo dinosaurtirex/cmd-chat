@@ -53,7 +53,7 @@ class Client:
         if message[0] == self.username:
             return Fore.MAGENTA + message[0] + ": " + message[1] + Fore.WHITE 
         else:
-
+            return message[0] + ": " + message[1] + Fore.WHITE 
             
     def update_info(self):
         last_try = None
@@ -82,9 +82,9 @@ class Client:
                             print("IP:", Fore.MAGENTA + ip + Fore.WHITE)
                             print("USERNAME: ", Fore.GREEN + username + Fore.WHITE)
                         print()
-                        print(f"{actual_message}")
+                        print(f"{self.print_message(actual_message)}")
                     else:
-                        print(f"{actual_message}")
+                        print(f"{self.print_message(actual_message)}")
 
     def _key_request(self) -> None:
         with open('private.pem', 'rb') as f:
