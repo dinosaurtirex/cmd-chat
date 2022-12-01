@@ -1,16 +1,15 @@
+import rsa
+from server.models import Message
+from cryptography.fernet import Fernet
 from sanic.response import HTTPResponse
 from sanic import Sanic, Request, response 
-from cryptography.fernet import Fernet
-
-
-import rsa
 
 app = Sanic("app")
 app.config.OAS = False
 
 # Message structure is:
 # [username: message, ...]
-actual_messages: list[str] = []
+actual_messages: list[Message] = []
 # Users structure is
 # {Ip, Username: Public key} 
 users: dict[str, str] = {}
