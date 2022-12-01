@@ -14,7 +14,7 @@ key = Fernet.generate_key()
 
 @app.route('/talk', methods=["GET", "POST"])
 async def talking(request: Request) -> HTTPResponse:
-    actual_messages.append(request.form["text"][0])
+    actual_messages.append(request.form.get("text"))
     return response.json({"status": "ok"})
 
 
@@ -29,7 +29,7 @@ async def talking(request: Request) -> HTTPResponse:
 @app.route('/get_key', methods=['GET', 'POST'])
 async def get_key(request: Request) -> HTTPResponse:
     
-    pubkey = rsa.PublicKey.load_pkcs1(request.form['pubkey'][0])
+    pubkey = rsa.PublicKey.load_pkcs1(request.form.get('pubkey'))
     data = rsa.encrypt(key, pubkey)
     
     if request.ip not in users:
