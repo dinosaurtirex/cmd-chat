@@ -11,28 +11,25 @@ if "Linux" in str(platform.platform()):
     OS = "Linux"
 
 class Client:
-    
+
     def _key_gen(self) -> None:
-
         (pubkey, privkey) = rsa.newkeys(512)
-
         with open("private.pem", "wb") as f:
             f.write(privkey.save_pkcs1())
-            
         with open("public.pem", "wb") as f:
             f.write(pubkey.save_pkcs1())
-    
+
     def __init__(self, username: str):
         self.server = input("server ip: \n") 
         self.port = input("server port: \n") 
         self.username = username 
-        
+
+        # Urls 
         self.base_url = f"http://{self.server}:{self.port}"
-        
         self.talk_url = f"{self.base_url}/talk"
         self.info_url = f"{self.base_url}/update"
         self.key_url = f"{self.base_url}/get_key"
-
+        # Keys 
         self.pubkey = None 
         self.privkey = None
         self.symetric_key = None 
