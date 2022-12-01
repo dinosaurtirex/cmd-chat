@@ -2,3 +2,4 @@ sanic
 requests
 rsa
 cryptography
+colorama

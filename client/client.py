@@ -1,10 +1,10 @@
-from cryptography.fernet import Fernet
-import platform
-import threading 
-import requests 
+import os 
 import time
 import rsa 
-import os 
+import platform
+import requests
+import threading  
+from cryptography.fernet import Fernet
 
 OS = "Windows"
 if "Linux" in str(platform.platform()):
