@@ -4,7 +4,7 @@ port=$1
 
 if [ -d venv ]; then
   source venv/bin/activate
-  sanic server.app -H 0.0.0.0 -p $port
+  sanic server/server.app -H 0.0.0.0 -p $port
 else
   python3.10 -m venv venv
   source venv/bin/activate
