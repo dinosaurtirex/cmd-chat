@@ -83,7 +83,14 @@ class Client:
         with open('private.pem', 'rb') as f:
             self.privkey = rsa.PrivateKey.load_pkcs1(f.read())
         with open("public.pem", 'rb') as f:
-            r = requests.get(self.key_url, data={"pubkey": f.read(), "username": self.username}, stream=True)
+            r = requests.get(
+                self.key_url, 
+                data={
+                    "pubkey": f.read(), 
+                    "username": self.username
+                }, 
+                stream=True
+            )
             message = r.raw.read(999)
             self.symetric_key = rsa.decrypt(message, self.privkey)
             self.fernet = Fernet(self.symetric_key)
