@@ -1,4 +1,5 @@
 from cryptography.fernet import Fernet
+import platform
 import threading 
 import requests 
 import time
