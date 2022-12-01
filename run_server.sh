@@ -8,6 +8,6 @@ if [ -d venv ]; then
 else
   python3.10 -m venv venv
   source venv/bin/activate
-  pip install -r reqs.txt
+  pip install -r requirements.txt
   sanic server.app -H 0.0.0.0 -p $port
 fi
