@@ -20,10 +20,10 @@ class Client:
             f.write(pubkey.save_pkcs1())
 
     def __init__(self, username: str):
+        # Server info 
         self.server = input("server ip: \n") 
         self.port = input("server port: \n") 
         self.username = username 
-
         # Urls 
         self.base_url = f"http://{self.server}:{self.port}"
         self.talk_url = f"{self.base_url}/talk"
@@ -36,7 +36,6 @@ class Client:
         self.fernet = None
 
     def send_info(self):
-        
         while True:
             user_input = input("You're message: ")
             message = f'{self.username}: {user_input}'
@@ -71,8 +70,7 @@ class Client:
                         print(f"{actual_message}\n")
                     else:
                         print(f"{actual_message}\n")
-                
-                
+
     def _key_request(self) -> None:
         with open('private.pem', 'rb') as f:
             self.privkey = rsa.PrivateKey.load_pkcs1(f.read())
@@ -88,11 +86,11 @@ class Client:
             message = r.raw.read(999)
             self.symetric_key = rsa.decrypt(message, self.privkey)
             self.fernet = Fernet(self.symetric_key)
-      
+
     def _remove_keys(self) -> None:
         os.remove("private.pem")
         os.remove("public.pem")
-  
+
     def _validate_keys(self) -> None:
         self._key_gen()
         self._key_request()
@@ -100,8 +98,7 @@ class Client:
             first_key = f.read()   
         self.pubkey = rsa.PublicKey.load_pkcs1(first_key)
         self._remove_keys()
-        
-            
+
     def __call__(self):
         # Running two threads,
         # One for sending info
