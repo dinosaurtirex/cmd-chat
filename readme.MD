@@ -1,6 +1,8 @@
-here is secured online chat what can be runned in cmd 
-
-![preview](preview.png)
+  _____   __  ___   ___   _____   __ __   ___  ______
+ / ___/  /  |/  /  / _ \ / ___/  / // /  / _ |/_  __/
+/ /__   / /|_/ /  / // // /__   / _  /  / __ | / /   
+\___/  /_/  /_/  /____/ \___/  /_//_/  /_/ |_|/_/    
+                                                     
 
 # Server run 
 
@@ -80,3 +82,5 @@ python client.py
 * interface for choosing server in client 
 * double password user verification
 * white list
+
+![preview](preview.png)
