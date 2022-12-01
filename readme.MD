@@ -85,5 +85,3 @@ python client.py
 * interface for choosing server in client 
 * double password user verification
 * white list
-
-![preview](preview.png)
