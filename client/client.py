@@ -19,7 +19,7 @@ class Client:
         with open("public.pem", "wb") as f:
             f.write(pubkey.save_pkcs1())
 
-    def __init__(self, username: str):
+    def __init__(self):
         # Server info 
         self.server = input("server ip: \n") 
         self.port = input("server port: \n") 
@@ -110,8 +110,8 @@ class Client:
         ]
         for th in threads:
             th.start()
-        
-        
+
+
 if __name__ == '__main__':
     c = Client(input("Who are you? \t"))
     c()
