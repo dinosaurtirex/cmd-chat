@@ -92,29 +92,22 @@ class Client:
     def _remove_keys(self) -> None:
         os.remove("private.pem")
         os.remove("public.pem")
-                
-                
+  
     def _validate_keys(self) -> None:
-        
         self._key_gen()
         self._key_request()
-        
         with open('public.pem', "rb") as f:
-            first_key = f.read()
-            
+            first_key = f.read()   
         self.pubkey = rsa.PublicKey.load_pkcs1(first_key)
         self._remove_keys()
         
             
     def __call__(self):
-        
         self._validate_keys()
-          
         threads = [
             threading.Thread(target=self.send_info),
             threading.Thread(target=self.update_info)
         ]
-        
         for th in threads:
             th.start()
         
