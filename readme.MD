@@ -2,19 +2,17 @@ here is secured online chat what can be runned in cmd
 
 ![preview](preview.png)
 
+how to run server on linux:
+
+* chmod +x run_server.sh
+* ./run_server.sh 2121 # or any other port 
+
 how to run server on windows 10 / 11 in powershell
 
 * python -m venv venv
 * venv/scripts/Activate
 * pip install -r reqs.txt 
 * sanic server.app -H 0.0.0.0 -p <port>
-
-how to run server on linux:
-
-chmod +x run_server.sh
-./run_server.sh <port>
-for example:
-./run_server.sh 2121
 
 how to run clear client
 
