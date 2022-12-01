@@ -47,7 +47,13 @@ class Client:
                 "text": self.fernet.encrypt(message.encode()),
                 "username": self.username
             })
-            
+
+    def print_message(self, message: str) -> str:
+        message = message.split(":")
+        if message[0] == self.username:
+            return Fore.MAGENTA + message[0] + ": " + message[1] + Fore.WHITE 
+        else:
+
             
     def update_info(self):
         last_try = None
