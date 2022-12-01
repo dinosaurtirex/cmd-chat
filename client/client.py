@@ -75,9 +75,10 @@ class Client:
                             username = user.split(",")[1]
                             print("IP:", Fore.MAGENTA + ip + Fore.WHITE)
                             print("USERNAME: ", Fore.GREEN + username + Fore.WHITE)
-                        print(f"{actual_message}\n")
+                        print()
+                        print(f"{actual_message}")
                     else:
-                        print(f"{actual_message}\n")
+                        print(f"{actual_message}")
 
     def _key_request(self) -> None:
         with open('private.pem', 'rb') as f:
