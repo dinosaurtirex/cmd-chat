@@ -34,6 +34,8 @@ how to run client on linux
 
 ```
 chmod +x run_client.sh
+```
+```
 ./run_client.sh
 ```
 
