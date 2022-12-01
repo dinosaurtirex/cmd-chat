@@ -10,7 +10,6 @@ OS = "Windows"
 if "Linux" in str(platform.platform()):
     OS = "Linux"
 
-
 class Client:
     
     def _key_gen(self) -> None:
@@ -22,7 +21,6 @@ class Client:
             
         with open("public.pem", "wb") as f:
             f.write(pubkey.save_pkcs1())
-    
     
     def __init__(self, username: str):
         self.server = input("server ip: \n") 
@@ -39,8 +37,7 @@ class Client:
         self.privkey = None
         self.symetric_key = None 
         self.fernet = None
-        
-        
+
     def send_info(self):
         
         while True:
@@ -68,7 +65,9 @@ class Client:
                 os.system("cls")
             if len(last_try['status']) > 0:
                 for i, msg in enumerate(last_try["status"]):
-                    actual_message = self.fernet.decrypt(msg.encode()).decode("utf-8")
+                    actual_message = self.fernet.decrypt(
+                        msg.encode()
+                    ).decode("utf-8")
                     if i == 0:
                         users = last_try["users_in_chat"]
                         print(f"Users in chat: {users}\n\n")
