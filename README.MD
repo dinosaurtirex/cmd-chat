@@ -79,8 +79,7 @@ python client.py
 * Client sending public key to server
 * Server crypting symmetric key and sending to client 
 * Client encrypting private key 
-* And than communicate with server via
-* symmetric key
+* And than communicate with server via symmetric key
 
 ## To do
 
