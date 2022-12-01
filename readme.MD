@@ -2,7 +2,9 @@ here is secured online chat what can be runned in cmd
 
 ![preview](preview.png)
 
-how to run server on linux:
+# Server run 
+
+## Linux 
 
 ```
 chmod +x run_server.sh
@@ -12,7 +14,7 @@ chmod +x run_server.sh
 ./run_server.sh <port>
 ```
 
-how to run server on windows 10 / 11 in powershell
+## Windows 
 
 ```
 python -m venv venv
@@ -30,7 +32,9 @@ pip install -r reqs.txt
 sanic server.app -H 0.0.0.0 -p <port>
 ```
 
-how to run client on linux
+# Client run 
+
+## Linux 
 
 ```
 chmod +x run_client.sh
@@ -39,7 +43,7 @@ chmod +x run_client.sh
 ./run_client.sh
 ```
 
-how to run clear client on windows
+## Windows 
 
 ```
 python -m venv venv
@@ -57,8 +61,7 @@ pip install -r reqs.txt
 python client.py
 ```
 
-
-crypting pipeline
+## How crypting works? 
 
 * Client making priv key
 * Server making symmetric key 
@@ -68,7 +71,7 @@ crypting pipeline
 * And than communicate with server via
 * symmetric key
 
-to do
+## To do
 
 * interface for choosing server in client 
 * double password user verification
