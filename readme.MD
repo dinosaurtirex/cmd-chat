@@ -38,6 +38,8 @@ sanic server.app -H 0.0.0.0 -p <port>
 
 ## Linux 
 
+For linux its required to have python3.10 
+
 ```
 chmod +x run_client.sh
 ```
