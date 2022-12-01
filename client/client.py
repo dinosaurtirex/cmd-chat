@@ -4,7 +4,10 @@ import rsa
 import platform
 import requests
 import threading  
+from colorama import init
 from cryptography.fernet import Fernet
+
+init()
 
 OS = "Windows"
 if "Linux" in str(platform.platform()):
