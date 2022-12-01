@@ -6,7 +6,9 @@ import time
 import rsa 
 import os 
 
-OS = ""
+OS = "Windows"
+if "Linux" in str(platform.platform()):
+    OS = "Linux"
 
 
 class Client:
