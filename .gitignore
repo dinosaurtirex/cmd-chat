@@ -4,3 +4,5 @@
 test_rsa.py
 .gitignore
 commiter.py
+__pycache__
+*.pyc
