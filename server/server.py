@@ -23,9 +23,7 @@ async def talking(request: Request) -> HTTPResponse:
     print("users_in_chat", [[username, ip] for username, ip in zip(users.keys(),users.values())])
     return response.json({
         "status": actual_messages, 
-        "users_in_chat": [[username, ip] for username, ip in zip(
-            users.keys(),users.values()
-        )]
+        "users_in_chat": list(users.keys())
     })
 
 
