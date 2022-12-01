@@ -20,7 +20,8 @@ async def talking(request: Request) -> HTTPResponse:
 
 @app.route('/update', methods=["GET", "POST"])
 async def talking(request: Request) -> HTTPResponse:
-    print(users)
+#    print(users)
+    print(actual_messages)
     return response.json({
         "status": actual_messages, 
         "users_in_chat": list(users.keys())
