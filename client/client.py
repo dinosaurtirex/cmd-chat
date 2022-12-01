@@ -23,7 +23,7 @@ class Client:
         # Server info 
         self.server = input("server ip: \n") 
         self.port = input("server port: \n") 
-        self.username = username 
+        self.username = input("your username: \n") 
         # Urls 
         self.base_url = f"http://{self.server}:{self.port}"
         self.talk_url = f"{self.base_url}/talk"
@@ -113,5 +113,4 @@ class Client:
 
 
 if __name__ == '__main__':
-    c = Client(input("Who are you? \t"))
-    c()
+    Client()()
