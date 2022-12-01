@@ -83,10 +83,10 @@ class Client:
         with open('private.pem', 'rb') as f:
             self.privkey = rsa.PrivateKey.load_pkcs1(f.read())
         with open("public.pem", 'rb') as f:
-            with requests.get(self.key_url, data={"pubkey": f.read(), "username": self.username}, stream=True) as r:
-                message = r.raw.read(999)
-                self.symetric_key = rsa.decrypt(message, self.privkey)
-                self.fernet = Fernet(self.symetric_key)
+            r = requests.get(self.key_url, data={"pubkey": f.read(), "username": self.username}, stream=True)
+            message = r.raw.read(999)
+            self.symetric_key = rsa.decrypt(message, self.privkey)
+            self.fernet = Fernet(self.symetric_key)
       
     def _remove_keys(self) -> None:
         os.remove("private.pem")
