@@ -2,6 +2,7 @@ from sanic.response import HTTPResponse
 from sanic import Sanic, Request, response 
 from cryptography.fernet import Fernet
 
+
 import rsa
 
 app = Sanic("app")
