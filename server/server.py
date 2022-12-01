@@ -1,9 +1,6 @@
-from email.policy import HTTP
-from typing import Any, Coroutine
 from sanic import Sanic, Request, response 
 from sanic.response import HTTPResponse
 from cryptography.fernet import Fernet
-from sanic.server.websockets.impl import WebsocketImplProtocol
 
 import rsa
 
@@ -23,7 +20,12 @@ async def talking(request: Request) -> HTTPResponse:
 
 @app.route('/update', methods=["GET", "POST"])
 async def talking(request: Request) -> HTTPResponse:
-    return response.json({"status": actual_messages, "users_in_chat": list(users.keys())})
+    return response.json({
+        "status": actual_messages, 
+        "users_in_chat": [[username, ip] for username, ip in zip(
+            users.keys(),users.values()
+        )]
+    })
 
 
 @app.route('/get_key', methods=['GET', 'POST'])
