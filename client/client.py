@@ -5,6 +5,7 @@ import platform
 import requests
 import threading  
 from colorama import init
+from colorama import Fore
 from cryptography.fernet import Fernet
 
 init()
@@ -69,7 +70,10 @@ class Client:
                     ).decode("utf-8")
                     if i == 0:
                         users = last_try["users_in_chat"]
-                        print(f"Users in chat: {users}\n\n")
+                        for user in users:
+                            ip = user.split(",")[0]
+                            username = user.split(",")[1]
+                            print(F)
                         print(f"{actual_message}\n")
                     else:
                         print(f"{actual_message}\n")
