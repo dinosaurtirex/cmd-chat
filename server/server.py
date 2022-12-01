@@ -7,6 +7,8 @@ import rsa
 app = Sanic("app")
 app.config.OAS = False
 
+# Message structure is:
+# username: message 
 actual_messages = []
 users = {}
 key = Fernet.generate_key()
