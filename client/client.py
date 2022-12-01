@@ -60,7 +60,12 @@ class Client:
             if last_try == r.json():
                 continue 
             last_try = r.json()
-            os.system("clear")
+            # For windows clear command its cls 
+            # For linux clear command its clear
+            if OS == "Linux":
+                os.system("clear")
+            else:
+                os.system("cls")
             if len(last_try['status']) > 0:
                 i = 0
                 for msg in last_try["status"]:
@@ -83,9 +88,7 @@ class Client:
                 message = r.raw.read(999)
                 self.symetric_key = rsa.decrypt(message, self.privkey)
                 self.fernet = Fernet(self.symetric_key)
-
-                
-                
+      
     def _remove_keys(self) -> None:
         os.remove("private.pem")
         os.remove("public.pem")
