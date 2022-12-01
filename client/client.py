@@ -73,7 +73,8 @@ class Client:
                         for user in users:
                             ip = user.split(",")[0]
                             username = user.split(",")[1]
-                            print(F)
+                            print("IP:", Fore.MAGENTA + ip + Fore.WHITE)
+
                         print(f"{actual_message}\n")
                     else:
                         print(f"{actual_message}\n")
