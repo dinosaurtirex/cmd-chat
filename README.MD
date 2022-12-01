@@ -34,7 +34,7 @@ venv/scripts/Activate
 ```
 
 ```
-pip install -r reqs.txt
+pip install -r requirements.txt
 ```
 
 ```
@@ -65,7 +65,7 @@ venv/scripts/Activate
 ```
 
 ```
-pip install -r reqs.txt 
+pip install -r requirements.txt
 ```
 
 ```
