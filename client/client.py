@@ -67,8 +67,7 @@ class Client:
             else:
                 os.system("cls")
             if len(last_try['status']) > 0:
-                i = 0
-                for msg in last_try["status"]:
+                for i, msg in enumerate(last_try["status"]):
                     actual_message = self.fernet.decrypt(msg.encode()).decode("utf-8")
                     if i == 0:
                         users = last_try["users_in_chat"]
@@ -76,7 +75,6 @@ class Client:
                         print(f"{actual_message}\n")
                     else:
                         print(f"{actual_message}\n")
-                    i += 1
                 
                 
     def _key_request(self) -> None:
