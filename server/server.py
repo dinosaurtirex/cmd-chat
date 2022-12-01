@@ -18,14 +18,17 @@ key = Fernet.generate_key()
 
 @app.route('/talk', methods=["GET", "POST"])
 async def talking(request: Request) -> HTTPResponse:
-    actual_messages.append(request.form.get("text"))
+    new_message = Message(
+        message=request.form.get("text")
+    )
+    actual_messages.append(new_message)
     return response.json({"status": "ok"})
 
 
 @app.route('/update', methods=["GET", "POST"])
 async def talking(request: Request) -> HTTPResponse:
     return response.json({
-        "status": actual_messages, 
+        "status": [i.message for i in actual_messages], 
         "users_in_chat": list(users.keys())
     })
 
