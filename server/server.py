@@ -20,8 +20,6 @@ async def talking(request: Request) -> HTTPResponse:
 
 @app.route('/update', methods=["GET", "POST"])
 async def talking(request: Request) -> HTTPResponse:
-#    print(users)
-    print(actual_messages)
     return response.json({
         "status": actual_messages, 
         "users_in_chat": list(users.keys())
@@ -35,6 +33,6 @@ async def get_key(request: Request) -> HTTPResponse:
     data = rsa.encrypt(key, pubkey)
     
     if request.ip not in users:
-        users[f"{request.ip}|{request.form.get('username')}"] = key
+        users[f"source: {request.ip} username: {request.form.get('username')}"] = key
     
     return response.raw(data)
