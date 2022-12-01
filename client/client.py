@@ -5,6 +5,8 @@ import time
 import rsa 
 import os 
 
+OS = ""
+
 
 class Client:
     
