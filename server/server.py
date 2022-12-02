@@ -31,10 +31,8 @@ async def talking(request: Request, ws: Websocket) -> HTTPResponse:
 @app.websocket("/update")
 async def talking(request: Request, ws: Websocket) -> HTTPResponse:
     while True:
-        await ws.send({
-            "status": [i.message for i in actual_messages], 
-            "users_in_chat": list(users.keys())
-        })
+        string = str({"status": [i.message for i in actual_messages], "users_in_chat": list(users.keys())})
+        await ws.send(b'')
         await asyncio.sleep(0.2)
         # return response.json({
         #     "status": [i.message for i in actual_messages], 
