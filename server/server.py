@@ -17,8 +17,9 @@ users: dict[str, str] = {}
 key = Fernet.generate_key()
 
 
-@app.route('/talk', methods=["GET", "POST"])
-async def talking(request: Request) -> HTTPResponse:
+#@app.route('/talk', methods=["GET", "POST"])
+@app.websocket("/talk")
+async def talking(request: Request, ws: Websocket) -> HTTPResponse:
     new_message = Message(
         message=request.form.get("text")
     )
