@@ -4,4 +4,4 @@ rsa
 cryptography
 colorama
 pydantic
-websocket
+websocket-client
