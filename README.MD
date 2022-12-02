@@ -34,7 +34,7 @@ venv/scripts/Activate
 ```
 
 ```
-pip install -r reqs.txt
+pip install -r requirements.txt
 ```
 
 ```
@@ -65,7 +65,7 @@ venv/scripts/Activate
 ```
 
 ```
-pip install -r reqs.txt 
+pip install -r requirements.txt
 ```
 
 ```
@@ -79,11 +79,4 @@ python client.py
 * Client sending public key to server
 * Server crypting symmetric key and sending to client 
 * Client encrypting private key 
-* And than communicate with server via
-* symmetric key
-
-## To do
-
-* interface for choosing server in client 
-* double password user verification
-* white list
+* And than communicate with server via symmetric key
