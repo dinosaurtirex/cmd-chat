@@ -22,7 +22,7 @@ key = Fernet.generate_key()
 async def talking(request: Request, ws: Websocket) -> HTTPResponse:
     while True:
         data = await ws.recv()
-        print(data)
+        print(eval(data))
         # new_message = Message(
         #     message=request.form.get("text")
         # )
