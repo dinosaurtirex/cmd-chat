@@ -7,6 +7,7 @@ import threading
 from colorama import init
 from colorama import Fore
 from cryptography.fernet import Fernet
+from websocket import create_connection
 
 init()
 
