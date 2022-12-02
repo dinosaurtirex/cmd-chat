@@ -34,6 +34,7 @@ class Client:
         self.talk_url = f"{self.base_url}/talk"
         self.info_url = f"{self.base_url}/update"
         self.key_url = f"{self.base_url}/get_key"
+        self.ws_url = f"ws://{self.server}:{self.port}"
         # Keys 
         self.pubkey = None 
         self.privkey = None
@@ -57,7 +58,7 @@ class Client:
             return message[0] + ": " + message[1] + Fore.WHITE 
             
     def update_info(self):
-        ws = create_connection("ws://localhost:1212/update")
+        ws = create_connection(f"ws://{self.base_url}/update")
         last_try = None
         while True:
             time.sleep(0.05)
