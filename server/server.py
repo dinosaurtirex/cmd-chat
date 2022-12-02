@@ -17,9 +17,8 @@ users: dict[str, str] = {}
 key = Fernet.generate_key()
 
 
-#@app.route('/talk', methods=["GET", "POST"])
-@app.websocket("/talk")
-async def talking(request: Request, ws: Websocket) -> HTTPResponse:
+@app.route('/talk', methods=["GET", "POST"])
+async def talking(request: Request) -> HTTPResponse:
     new_message = Message(
         message=request.form.get("text")
     )
@@ -31,8 +30,11 @@ async def talking(request: Request, ws: Websocket) -> HTTPResponse:
 @app.websocket("/update")
 async def talking(request: Request, ws: Websocket) -> HTTPResponse:
     while True:
-        string = str({"status": [i.message for i in actual_messages], "users_in_chat": list(users.keys())})
-        await ws.send(string.encode())
+        payload = str({
+            "status": [i.message for i in actual_messages], 
+            "users_in_chat": list(users.keys())
+        })
+        await ws.send(payload.encode())
         await asyncio.sleep(0.2)
         # return response.json({
         #     "status": [i.message for i in actual_messages], 
