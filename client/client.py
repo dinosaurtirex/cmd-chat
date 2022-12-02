@@ -46,10 +46,11 @@ class Client:
         while True:
             user_input = input("You're message: ")
             message = f'{self.username}: {user_input}'
-            requests.post(self.talk_url, data={
+            socket_message = str({
                 "text": self.fernet.encrypt(message.encode()),
                 "username": self.username
             })
+            ws.send(payload=socket_message.encode())
 
     def print_message(self, message: str) -> str:
         message = message.split(":")
