@@ -57,6 +57,7 @@ class Client:
             return message[0] + ": " + message[1] + Fore.WHITE 
             
     def update_info(self):
+        ws = create_connection("ws://localhost:1212/update")
         last_try = None
         while True:
             time.sleep(0.05)
