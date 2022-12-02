@@ -26,7 +26,6 @@ async def talking(request: Request) -> HTTPResponse:
     return response.json({"status": "ok"})
 
 
-#@app.route('/update', methods=["GET", "POST"])
 @app.websocket("/update")
 async def talking(request: Request, ws: Websocket) -> HTTPResponse:
     while True:
@@ -36,10 +35,6 @@ async def talking(request: Request, ws: Websocket) -> HTTPResponse:
         })
         await ws.send(payload.encode())
         await asyncio.sleep(0.2)
-        # return response.json({
-        #     "status": [i.message for i in actual_messages], 
-        #     "users_in_chat": list(users.keys())
-        # })
 
 
 @app.route('/get_key', methods=['GET', 'POST'])

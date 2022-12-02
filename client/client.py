@@ -62,7 +62,6 @@ class Client:
         last_try = None
         while True:
             time.sleep(0.05)
-            #r = requests.post(self.info_url)
             r = ws.recv()
             if last_try == eval(r):
                 continue 
