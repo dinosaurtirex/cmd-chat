@@ -42,6 +42,7 @@ class Client:
         self.fernet = None
 
     def send_info(self):
+        ws = create_connection(f"{self.ws_url}/talk")
         while True:
             user_input = input("You're message: ")
             message = f'{self.username}: {user_input}'
