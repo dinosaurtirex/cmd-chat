@@ -20,11 +20,13 @@ key = Fernet.generate_key()
 #@app.route('/talk', methods=["GET", "POST"])
 @app.websocket("/talk")
 async def talking(request: Request, ws: Websocket) -> HTTPResponse:
-    new_message = Message(
-        message=request.form.get("text")
-    )
-    actual_messages.append(new_message)
-    return response.json({"status": "ok"})
+    while True:
+        new_message = Message(
+            message=request.form.get("text")
+        )
+        actual_messages.append(new_message)
+        await asyncio.sleep(0.2)
+        # return response.json({"status": "ok"})
 
 
 @app.websocket("/update")
