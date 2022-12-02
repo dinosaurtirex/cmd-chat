@@ -64,6 +64,7 @@ class Client:
             time.sleep(0.05)
             #r = requests.post(self.info_url)
             ws.send(payload="")
+            r =  ws.recv()
             if last_try == r.json():
                 continue 
             last_try = r.json()
