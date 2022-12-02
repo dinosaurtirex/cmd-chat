@@ -17,19 +17,17 @@ users: dict[str, str] = {}
 key = Fernet.generate_key()
 
 
-#@app.route('/talk', methods=["GET", "POST"])
 @app.websocket("/talk")
 async def talking(request: Request, ws: Websocket) -> HTTPResponse:
     while True:
-        data = await ws.recv()
+        data: str = await ws.recv()
         serialized_message: dict = eval(data)
         new_message = Message(
             message=serialized_message.get("text")
         )
-        #actual_messages.append(new_message)
+        actual_messages.append(new_message)
         await ws.send("{'status': 'ok'}")
         await asyncio.sleep(0.2)
-        # return response.json({"status": "ok"})
 
 
 @app.websocket("/update")
