@@ -58,11 +58,12 @@ class Client:
             return message[0] + ": " + message[1] + Fore.WHITE 
             
     def update_info(self):
-        ws = create_connection(f"ws://{self.base_url}/update")
+        ws = create_connection(f"{self.ws_url}/update")
         last_try = None
         while True:
             time.sleep(0.05)
-            r = requests.post(self.info_url)
+            #r = requests.post(self.info_url)
+            ws.send(payload="")
             if last_try == r.json():
                 continue 
             last_try = r.json()
