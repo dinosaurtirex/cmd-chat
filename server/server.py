@@ -19,7 +19,7 @@ key = Fernet.generate_key()
 
 #@app.route('/talk', methods=["GET", "POST"])
 @app.websocket("/talk")
-async def talking(request: Request) -> HTTPResponse:
+async def talking(request: Request, ws: Websocket) -> HTTPResponse:
     new_message = Message(
         message=request.form.get("text")
     )
