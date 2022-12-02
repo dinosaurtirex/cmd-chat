@@ -21,6 +21,8 @@ key = Fernet.generate_key()
 @app.websocket("/talk")
 async def talking(request: Request, ws: Websocket) -> HTTPResponse:
     while True:
+        data = await ws.recv()
+        print(data)
         new_message = Message(
             message=request.form.get("text")
         )
