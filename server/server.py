@@ -27,6 +27,7 @@ async def talking(request: Request, ws: Websocket) -> HTTPResponse:
             message=request.form.get("text")
         )
         actual_messages.append(new_message)
+        await ws.send("{'status': 'ok'}")
         await asyncio.sleep(0.2)
         # return response.json({"status": "ok"})
 
