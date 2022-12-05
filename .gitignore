@@ -6,3 +6,5 @@ test_rsa.py
 commiter.py
 __pycache__
 *.pyc
+.idea
+*.pem
