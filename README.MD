@@ -13,70 +13,15 @@
 
 All you need it's to run web-server and connect to them via client
 
-# Server run 
+# Run 
 
-## Linux 
-
-For linux its required to have python3.10 
+### Create and activate virtual environment python
 
 ```
-chmod +x run_server.sh
+python main.py
 ```
 
-```
-./run_server.sh <port>
-```
-
-## Windows 
-
-```
-python -m venv venv
-```
-
-```
-venv/scripts/Activate
-```
-
-```
-pip install -r requirements.txt
-```
-
-```
-sanic server.server.app -H 0.0.0.0 -p <port>
-```
-
-# Client run 
-
-## Linux 
-
-For linux its required to have python3.10 
-
-```
-chmod +x run_client.sh
-```
-```
-./run_client.sh
-```
-
-## Windows 
-
-```
-python -m venv venv
-```
-
-```
-venv/scripts/Activate
-```
-
-```
-pip install -r requirements.txt
-```
-
-```
-python client/client.py
-```
-
-## How crypting works? 
+# How crypting works? 
 
 * Client making priv key
 * Server making symmetric key 

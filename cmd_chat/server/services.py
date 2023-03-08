@@ -1,5 +1,5 @@
-from sanic import Sanic, Request, response, Websocket
-from server.models import Message
+from sanic import Websocket
+from cmd_chat.server.models import Message
 
 
 async def _get_bytes_and_serialize(

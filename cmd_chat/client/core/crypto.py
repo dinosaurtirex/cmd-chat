@@ -2,7 +2,8 @@ import os
 import rsa
 import requests
 from cryptography.fernet import Fernet
-from core.abs.abs_crypto import CryptoService
+
+from cmd_chat.client.core.abs.abs_crypto import CryptoService
 
 
 class RSAService(CryptoService):

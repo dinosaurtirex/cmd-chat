@@ -6,8 +6,8 @@ from cryptography.fernet import Fernet
 from sanic.response import HTTPResponse
 from sanic import Sanic, Request, response, Websocket
 
-from server.models import Message
-from server.services import (
+from cmd_chat.server.models import Message
+from cmd_chat.server.services import (
     _get_bytes_and_serialize,
     _check_ws_for_close_status,
     _generate_new_message,

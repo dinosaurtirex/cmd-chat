@@ -2,11 +2,12 @@ import os
 import time
 import platform
 import threading
+
 from colorama import init
-from colorama import Fore
 from websocket import create_connection
-from core.crypto import RSAService
-from config import (
+
+from cmd_chat.client.core.crypto import RSAService
+from cmd_chat.client.config import (
     COLORS
 )
 
