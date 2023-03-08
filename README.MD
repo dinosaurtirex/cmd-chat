@@ -22,13 +22,13 @@ All you need it's to run web-server and connect to them via client
 ### Create and activate virtual environment python
 
 ```
-pip install cmd-chat
+pip install secured_console_chat
 ```
 
 ```
 import asyncio 
 
-from cmd_chat import run 
+from secured_console_chat import run 
 
 asyncio.run(
     run()

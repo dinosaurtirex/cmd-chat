@@ -4,8 +4,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
     description = fh.read()
   
 setuptools.setup(
-    name="cmd_chat",
-    version="1.0",
+    name="secured_console_chat",
+    version="1.1",
     author="dinosaurtirex",
     author_email="sneakybeaky18@gmail.com",
     packages=[
