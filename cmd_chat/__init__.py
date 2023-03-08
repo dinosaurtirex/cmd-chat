@@ -28,7 +28,9 @@ async def run_client(
 
 
 async def run() -> None:
-    action: int = int(input("Choose action:\n1. Run server\n2. Run client\nAction: "))
+    action: int = int(
+        input("Choose action:\n1. Run server\n2. Run client\nAction: ")
+    )
     if action == 1:
         await run_server(
             input("IP: "),

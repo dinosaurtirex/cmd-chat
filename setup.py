@@ -5,10 +5,16 @@ with open("README.md", "r", encoding="utf-8") as fh:
   
 setuptools.setup(
     name="cmd_chat",
-    version="1.0",
+    version="1.3",
     author="dinosaurtirex",
     author_email="sneakybeaky18@gmail.com",
-    packages=["cmd_chat"],
+    packages=[
+        "cmd_chat", 
+        "cmd_chat/client",
+        "cmd_chat/client/core",
+        "cmd_chat/client/core/abs",
+        "cmd_chat/server",
+    ],
     description="Secured console chat with RSA & Fernet",
     long_description=description,
     long_description_content_type="text/markdown",
