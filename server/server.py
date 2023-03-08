@@ -1,53 +1,68 @@
-import rsa
 import asyncio 
-from server.models import Message
+
+import rsa
 from cryptography.fernet import Fernet
+
 from sanic.response import HTTPResponse
 from sanic import Sanic, Request, response, Websocket
+
+from server.models import Message
+from server.services import (
+    _get_bytes_and_serialize,
+    _check_ws_for_close_status,
+    _generate_new_message,
+    _generate_update_payload
+)
+
 
 app = Sanic("app")
 app.config.OAS = False
 
+
 # Message structure is:
 # [username: message, ...]
-actual_messages: list[Message] = []
+MESSAGES_MEMORY_DB: list[Message] = []
+
+
 # Users structure is
 # {Ip, Username: Public key} 
-users: dict[str, str] = {}
-key = Fernet.generate_key()
+USERS: dict[str, str] = {}
+PUBLIC_KEY = Fernet.generate_key()
 
 
 @app.websocket("/talk")
-async def talking(request: Request, ws: Websocket) -> HTTPResponse:
+async def talk_ws_view(request: Request, ws: Websocket) -> HTTPResponse:
     while True:
-        data: str = await ws.recv()
-        serialized_message: dict = eval(data)
-        new_message = Message(
-            message=serialized_message.get("text")
+        serialized_message: dict = await _get_bytes_and_serialize(ws)
+        await _check_ws_for_close_status(
+            serialized_message,
+            ws
         )
-        actual_messages.append(new_message)
-        await ws.send("{'status': 'ok'}")
+        new_message = await _generate_new_message(
+            serialized_message.get("text")
+        )
+        MESSAGES_MEMORY_DB.append(new_message)
+        await ws.send(
+            str({"status": "ok"})
+        )
         await asyncio.sleep(0.2)
 
 
 @app.websocket("/update")
-async def talking(request: Request, ws: Websocket) -> HTTPResponse:
+async def update_ws_view(request: Request, ws: Websocket) -> HTTPResponse:
     while True:
-        payload = str({
-            "status": [i.message for i in actual_messages], 
-            "users_in_chat": list(users.keys())
-        })
+        payload = await _generate_update_payload(
+            MESSAGES_MEMORY_DB,
+            USERS
+        )
         await ws.send(payload.encode())
         await asyncio.sleep(0.2)
 
 
 @app.route('/get_key', methods=['GET', 'POST'])
-async def get_key(request: Request) -> HTTPResponse:
-    
-    pubkey = rsa.PublicKey.load_pkcs1(request.form.get('pubkey'))
-    data = rsa.encrypt(key, pubkey)
-    
-    if request.ip not in users:
-        users[f"{request.ip}, {request.form.get('username')}"] = key
-    
-    return response.raw(data)
+async def get_key_view(request: Request) -> HTTPResponse:
+    public_key = rsa.PublicKey.load_pkcs1(request.form.get('pubkey'))
+    encrypted_data = rsa.encrypt(PUBLIC_KEY, public_key)
+    if request.ip not in USERS:
+        USERS[f"{request.ip}, {request.form.get('username')}"] = PUBLIC_KEY
+    return response.raw(encrypted_data)

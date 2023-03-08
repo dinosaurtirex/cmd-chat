@@ -6,6 +6,9 @@ from colorama import init
 from colorama import Fore
 from websocket import create_connection
 from core.crypto import RSAService
+from config import (
+    COLORS
+)
 
 
 init()
@@ -25,13 +28,21 @@ class Client(RSAService):
         self.info_url = f"{self.base_url}/update"
         self.key_url = f"{self.base_url}/get_key"
         self.ws_url = f"ws://{self.server}:{self.port}"
+        self.close_response = str({
+            "action": "close",
+            "username": self.username
+        })
 
     def __get_os(self) -> str:
+        """ checking what kind of platform you need
+        """
         if "Linux" in str(platform.platform()):
             return "Linux"
         return "Windows"
 
     def send_info(self):
+        """ sending message to websocket
+        """
         ws = create_connection(f"{self.ws_url}/talk")
         while True:
             try:
@@ -41,20 +52,26 @@ class Client(RSAService):
                     "text": self._encrypt(message),
                     "username": self.username
                 })
-                ws.send(payload=socket_message.encode())
+                ws.send(
+                    payload=socket_message.encode()
+                )
             except KeyboardInterrupt:
+                ws.send(self.close_response)
                 ws.close()
                 quit()
             except Exception as exc:
+                ws.send(self.close_response)
                 ws.close()
                 print("Something went wrong! ", exc)
                 quit()
 
-    def print_message(self, message: str) -> str:
+    def __print_message(self, message: str) -> str:
+        """ generating string with message in required format
+        """
         message = message.split(":")
         if message[0] == self.username:
-            return Fore.MAGENTA + message[0] + ": " + message[1] + Fore.WHITE
-        return message[0] + ": " + message[1] + Fore.WHITE
+            return COLORS["my_username_color"] + message[0] + ": " + message[1] + COLORS["text_color"]
+        return message[0] + ": " + message[1] + COLORS["text_color"]
 
     def __clear_console(self):
         # For windows clear command its cls
@@ -64,31 +81,54 @@ class Client(RSAService):
         else:
             os.system("cls")
 
+    def __print_ip(
+        self,
+        ip: str
+    ) -> str:
+        return f"IP: " + COLORS["ip_color"] + ip + COLORS["text_color"]
+    
+    def __print_username(
+        self,
+        username: str
+    ) -> str:
+        return f"USERNAME: " + COLORS["ip_color"] + username + COLORS["username_color"]
+
+    def __print_chat(self, response: list[str]) -> str:
+        for i, msg in enumerate(response["messages"]):
+            actual_message = self._decrypt(msg)
+            if i == 0:
+                for user in response["users_in_chat"]:
+                    print(self.__print_ip(user.split(",")[0]))
+                    print(self.__print_username(user.split(",")[1]))
+                print(f"\n{self.__print_message(actual_message)}")
+            else:
+                print(f"{self.__print_message(actual_message)}")
+
     def update_info(self):
+        """ connecting to websocket,
+            wating for updates, 
+            updating every 0.05 seconds
+        """
         ws = create_connection(f"{self.ws_url}/update")
         last_try = None
         while True:
             try:
                 time.sleep(0.05)
-                r = eval(ws.recv())
-                if last_try == r:
+                response = eval(ws.recv())
+                if last_try == response:
                     continue
-                last_try = r
+                last_try = response
                 self.__clear_console()
-                if len(last_try['status']) > 0:
-                    for i, msg in enumerate(last_try["status"]):
-                        actual_message = self._decrypt(msg)
-                        if i == 0:
-                            for user in last_try["users_in_chat"]:
-                                print("IP:", Fore.MAGENTA + user.split(",")[0] + Fore.WHITE)
-                                print("USERNAME: ", Fore.GREEN + user.split(",")[1] + Fore.WHITE)
-                            print(f"\n{self.print_message(actual_message)}")
-                        else:
-                            print(f"{self.print_message(actual_message)}")
+                if len(last_try["messages"]) > 0:
+                    self.__print_chat(
+                        response = last_try
+                    )
             except KeyboardInterrupt:
+                ws.send(self.close_response)
                 ws.close()
                 quit()
             except Exception as exc:
+                ws.send(self.close_response)
                 ws.close()
                 print("Something went wrong! ", exc)
                 quit()

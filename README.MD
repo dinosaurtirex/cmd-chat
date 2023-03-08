@@ -9,6 +9,10 @@
 
 ![Alt Text](example.gif)
 
+# How it works?
+
+All you need it's to run web-server and connect to them via client
+
 # Server run 
 
 ## Linux 
@@ -38,7 +42,7 @@ pip install -r requirements.txt
 ```
 
 ```
-sanic server.app -H 0.0.0.0 -p <port>
+sanic server.server.app -H 0.0.0.0 -p <port>
 ```
 
 # Client run 
@@ -69,7 +73,7 @@ pip install -r requirements.txt
 ```
 
 ```
-python client.py
+python client/client.py
 ```
 
 ## How crypting works? 
