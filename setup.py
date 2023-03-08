@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
   
 setuptools.setup(
     name="cmd_chat",
-    version="1.3",
+    version="1.0",
     author="dinosaurtirex",
     author_email="sneakybeaky18@gmail.com",
     packages=[

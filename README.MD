@@ -26,7 +26,13 @@ pip install cmd-chat
 ```
 
 ```
-python main.py
+import asyncio 
+
+from cmd_chat import run 
+
+asyncio.run(
+    run()
+)
 ```
 
 # How crypting works? 
