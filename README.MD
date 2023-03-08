@@ -9,6 +9,10 @@
 
 ![Alt Text](example.gif)
 
+# What is this?
+
+It is console chat with encrypting your messages
+
 # How it works?
 
 All you need it's to run web-server and connect to them via client
@@ -16,6 +20,10 @@ All you need it's to run web-server and connect to them via client
 # Run 
 
 ### Create and activate virtual environment python
+
+```
+pip install cmd-chat
+```
 
 ```
 python main.py

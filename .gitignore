@@ -9,3 +9,6 @@ __pycache__
 .idea
 *.pem
 __pycache__
+cmd_chat.egg-info
+build
+dist
