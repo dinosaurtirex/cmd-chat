@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
   
 setuptools.setup(
     name="secured_console_chat",
-    version="1.1",
+    version="1.1.1",
     author="dinosaurtirex",
     author_email="sneakybeaky18@gmail.com",
     packages=[

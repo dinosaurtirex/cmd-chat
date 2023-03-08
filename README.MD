@@ -27,12 +27,12 @@ pip install secured_console_chat
 
 ```
 import asyncio 
+import cmd_chat
 
-from secured_console_chat import run 
-
-asyncio.run(
-    run()
-)
+if __name__ == '__main__':
+    asyncio.run(
+        cmd_chat.run()
+    )
 ```
 
 # How crypting works? 

@@ -1,7 +1,7 @@
-from cmd_chat import run
 import asyncio 
+import cmd_chat
 
 if __name__ == '__main__':
     asyncio.run(
-        run()
+        cmd_chat.run()
     )
