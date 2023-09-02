@@ -11,15 +11,15 @@
 
 # What is this?
 
-It is console chat with encrypting your messages
+It is a console chat with message encryption.
 
-# How it works?
+# How does it work?
 
-All you need it's to run web-server and connect to them via client
+All you need to do is run a web server and connect to it via a client.
 
 # Run 
 
-### Create and activate virtual environment python
+### Create and activate a virtual environment in Python
 
 ```
 pip install secured_console_chat
@@ -35,11 +35,11 @@ if __name__ == '__main__':
     )
 ```
 
-# How crypting works? 
+How does encryption work?
 
-* Client making priv key
-* Server making symmetric key 
-* Client sending public key to server
-* Server crypting symmetric key and sending to client 
-* Client encrypting private key 
-* And than communicate with server via symmetric key
+* The client generates a private key.
+* The server generates a symmetric key.
+* The client sends the public key to the server.
+* The server encrypts the symmetric key and sends it to the client.
+* The client encrypts the private key.
+* After that, communication with the server occurs via the symmetric key.
