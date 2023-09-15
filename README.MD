@@ -1,6 +1,6 @@
-![Alt Text](https://static.wikia.nocookie.net/listofdeaths/images/b/b3/Tyler_Durden.webp/revision/latest?cb=20220909010337)
+# Welcome to command line chat project [CMD CHAT]
 
-![Alt Text](example.gif)
+![Alt Text](https://static.wikia.nocookie.net/listofdeaths/images/b/b3/Tyler_Durden.webp/revision/latest?cb=20220909010337)
 
 # What is this?
 
