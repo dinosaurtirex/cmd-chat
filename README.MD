@@ -36,3 +36,7 @@ How does encryption work?
 * The server encrypts the symmetric key and sends it to the client.
 * The client encrypts the private key.
 * After that, communication with the server occurs via the symmetric key.
+
+# Example
+
+![Alt Text](example.gif)
