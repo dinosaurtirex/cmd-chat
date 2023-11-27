@@ -27,34 +27,19 @@ if __name__ == '__main__':
 ```
 
 
-### Or (Windows)
+### Or 
 
 Start server:
 
 ```
-.\cmd_chat.bat serve localhost 5000 
+cmd_chat serve localhost 5000 
 ```
 
 Connect to server:
 
 ```
-.\cmd_chat.bat connect localhost 5000 tyler
+cmd_chat connect localhost 5000 tyler
 ```
-
-### Or (Linux)
-
-Start server:
-
-```
-python3 cmd_chat.py serve localhost 5000
-```
-
-Connect to server:
-
-```
-python3 cmd_chat.py connect localhost 5000 tyler
-```
-
 
 How does encryption work?
 

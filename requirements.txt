@@ -5,3 +5,4 @@ cryptography
 colorama
 pydantic
 websocket-client
+flask 

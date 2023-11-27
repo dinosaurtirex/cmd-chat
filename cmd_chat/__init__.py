@@ -1,19 +1,15 @@
 import asyncio 
 import argparse
 
-from cmd_chat.server.server import app
+from cmd_chat.server.server import run_server
 from cmd_chat.client.client import Client
 
 
-async def run_server(
+def run_http_server(
     ip: str,
     port: int
 ) -> None:
-    app.run(
-        host=ip,
-        port=port,
-        dev=False
-    )
+    run_server(ip, port, False)
 
 
 async def run_client(
@@ -53,12 +49,16 @@ async def run() -> None:
     )
     args = parser.parse_args()
     if args.command == 'serve':
-        await run_server(args.ip_address, int(args.port))
+        run_http_server(args.ip_address, int(args.port))
     elif args.command == 'connect':
         if not args.username:
             parser.error("Username is required for 'connect' command")
         await run_client(args.username, args.ip_address, int(args.port))
 
 
-if __name__ == '__main__':
+def main():
     asyncio.run(run())
+
+
+if __name__ == '__main__':
+    main()
