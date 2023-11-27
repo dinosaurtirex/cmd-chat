@@ -1,4 +1,5 @@
 import os 
+import ast 
 import time
 import platform
 import threading
@@ -115,7 +116,7 @@ class Client(RSAService):
         while True:
             try:
                 time.sleep(0.05)
-                response = eval(ws.recv())
+                response = ast.literal_eval(ws.recv().decode('utf-8'))
                 if last_try == response:
                     continue
                 last_try = response

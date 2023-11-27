@@ -1,3 +1,4 @@
+import ast
 from sanic import Websocket
 from cmd_chat.server.models import Message
 
@@ -5,7 +6,8 @@ from cmd_chat.server.models import Message
 async def _get_bytes_and_serialize(
     ws: Websocket
 ) -> dict:
-    return eval(await ws.recv())
+    ws_data = await ws.recv()
+    return ast.literal_eval(ws_data.decode('utf-8'))
 
 
 async def _check_ws_for_close_status(
