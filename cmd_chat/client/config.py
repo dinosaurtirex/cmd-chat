@@ -6,3 +6,5 @@ COLORS = {
     "ip_color": Fore.MAGENTA,
     "username_color": Fore.GREEN
 }
+
+RENDER_TIME = 0.05

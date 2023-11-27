@@ -6,8 +6,7 @@ from cmd_chat.server.models import Message
 async def _get_bytes_and_serialize(
     ws: Websocket
 ) -> dict:
-    ws_data = await ws.recv()
-    return ast.literal_eval(ws_data.decode('utf-8'))
+    return ast.literal_eval(await ws.recv())
 
 
 async def _check_ws_for_close_status(

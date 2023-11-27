@@ -9,7 +9,8 @@ from websocket import create_connection
 
 from cmd_chat.client.core.crypto import RSAService
 from cmd_chat.client.config import (
-    COLORS
+    COLORS,
+    RENDER_TIME
 )
 
 
@@ -109,13 +110,13 @@ class Client(RSAService):
     def update_info(self):
         """ connecting to websocket,
             wating for updates, 
-            updating every 0.05 seconds
+            updating every RENDER_TIME seconds
         """
         ws = create_connection(f"{self.ws_url}/update")
         last_try = None
         while True:
             try:
-                time.sleep(0.05)
+                time.sleep(RENDER_TIME)
                 response = ast.literal_eval(ws.recv().decode('utf-8'))
                 if last_try == response:
                     continue

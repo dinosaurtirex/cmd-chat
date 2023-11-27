@@ -23,10 +23,38 @@ import asyncio
 import cmd_chat
 
 if __name__ == '__main__':
-    asyncio.run(
-        cmd_chat.run()
-    )
+    asyncio.run(cmd_chat.run())
 ```
+
+
+### Or (Windows)
+
+Start server:
+
+```
+.\cmd_chat.bat serve localhost 5000 
+```
+
+Connect to server:
+
+```
+.\cmd_chat.bat connect localhost 5000 tyler
+```
+
+### Or (Linux)
+
+Start server:
+
+```
+python3 cmd_chat.py serve localhost 5000
+```
+
+Connect to server:
+
+```
+python3 cmd_chat.py connect localhost 5000 tyler
+```
+
 
 How does encryption work?
 
@@ -40,3 +68,8 @@ How does encryption work?
 # Example
 
 ![Alt Text](example.gif)
+
+# Known bugs 
+
+* Sometime WS just drop connection
+* Client input message problem. To start input, you need to press enter first, only after that you got pop up with message. Tried to fix, but nothing worked.
