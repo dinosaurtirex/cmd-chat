@@ -6,3 +6,4 @@ colorama
 pydantic
 websocket-client
 flask 
+rich

@@ -58,3 +58,11 @@ How does encryption work?
 
 * Sometime WS just drop connection
 * Client input message problem. To start input, you need to press enter first, only after that you got pop up with message. Tried to fix, but nothing worked.
+
+# 1.1.22
+
+- Renderer logics have been separated
+- A new renderer have been implemented  
+- Thread closing logics have been changed. Now, it is easy to quit from the client without any unexpected behavior
+- Now, displaying messages is limited to the last N messages. The default value is 5
+- WS dropped connection, probably fixed 
